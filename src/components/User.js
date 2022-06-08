@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import Button from '@mui/material/Button';
 
 export default function User() {
+    const prox = "https://artikon90.herokuapp.com"
     const paperStyle = {
         padding: '50px 20px',
         width: 600,
@@ -18,7 +19,7 @@ export default function User() {
     const handleClick = (e) => {
         e.preventDefault()
         const user = {user_name, user_age}
-        fetch("/user/add", {
+        fetch("${prox}/user/add", {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body:JSON.stringify(user)
@@ -28,13 +29,13 @@ export default function User() {
             })
     }
     useEffect(()=>{
-        fetch("/user/all")
+        fetch("${prox}/user/all")
             .then(res => res.json())
             .then((resul)=>{setUsers(resul)})
     }, [])
     const refresh = (e) => {
         e.preventDefault()
-        fetch("/user/all")
+        fetch("${prox}/user/all")
             .then(res => res.json())
             .then((resul)=>{setUsers(resul)})
     }
